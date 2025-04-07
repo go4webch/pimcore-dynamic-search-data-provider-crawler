@@ -78,6 +78,10 @@ class FilterPersistor
             return $this->data['cache'][$key];
         }
 
+        if(($this->openFile($this->data['file'], 'rb')) !== true) {
+            touch($this->data['file']);
+        }
+
         if (($fp = $this->openFile($this->data['file'], 'rb')) !== false) {
             @flock($fp, LOCK_SH);
 
