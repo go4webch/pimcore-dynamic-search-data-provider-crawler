@@ -106,7 +106,7 @@ class DefaultResourceNormalizer extends AbstractResourceNormalizer
 
         $documentId = sprintf('%s_%d', $resourceCollectionType, $resourceId);
 
-        return new ResourceMeta($documentId, $resourceId, $resourceCollectionType, $resourceType, null);
+        return new ResourceMeta($documentId, $resourceId, $resourceCollectionType, $resourceType, null, ['path' => parse_url($crawler->getUri(), PHP_URL_PATH)]);
     }
 
     protected function generateResourceMetaFromPdfResource(array $resourceAttributes): ?ResourceMetaInterface
