@@ -26,3 +26,7 @@ services:
     DsWebCrawlerBundle\Twig\Extension\CrawlerExtension:
         tags:
             - { name: twig.extension }
+
+    DsWebCrawlerBundle\Command\RiseGenesisIndexCommand:
+        tags:
+            - { name: console.command }
