@@ -2,7 +2,6 @@
 
 namespace DsWebCrawlerBundle\Command;
 
-use App\Command\OptionsResolver;
 use DsLuceneBundle\Service\LuceneStorageBuilder;
 use DynamicSearchBundle\Logger\LoggerInterface;
 use Symfony\Component\Console\Command\Command;
@@ -19,6 +18,7 @@ class RiseGenesisIndexCommand extends Command
         protected LoggerInterface $logger,
         protected LuceneStorageBuilder $storageBuilder
     ) {
+        parent::__construct();
     }
 
     protected function configure(): void
