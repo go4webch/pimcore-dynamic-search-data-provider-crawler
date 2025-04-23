@@ -71,10 +71,10 @@ class CrawlerService implements CrawlerServiceInterface
         $this->logger->log($level, $message, DsWebCrawlerBundle::PROVIDER_NAME, $this->contextName);
     }
 
-    public function process(): void
+    public function process(?string $baseURL = null): void
     {
         try {
-            $this->initializeSpider();
+            $this->initializeSpider($baseURL);
         } catch (\Exception $e) {
             $this->dispatchError(sprintf('Error while initializing spider. Error was: %s', $e->getMessage()), $e);
 
@@ -119,9 +119,9 @@ class CrawlerService implements CrawlerServiceInterface
         $this->spider->getDispatcher()->dispatch(new GenericEvent($this, ['spider' => $this->spider]), DsWebCrawlerEvents::DS_WEB_CRAWLER_FINISH);
     }
 
-    protected function initializeSpider(): void
+    protected function initializeSpider(?string $baseURL): void
     {
-        $spider = new Spider($this->getSpecialOption('seed'));
+        $spider = new Spider($baseURL ?? $this->getSpecialOption('seed'));
         $guzzleClient = new Client(['allow_redirects' => false, 'debug' => false]);
 
         $this->spider = $spider;

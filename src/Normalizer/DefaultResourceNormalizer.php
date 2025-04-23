@@ -101,10 +101,12 @@ class DefaultResourceNormalizer extends AbstractResourceNormalizer
         }
 
         if (empty($resourceId)) {
-            return null;
+            $resourceCollectionType = 'document';
+            $resourceType = 'page';
+            $resourceId = $crawler->getUri();
         }
 
-        $documentId = sprintf('%s_%d', $resourceCollectionType, $resourceId);
+        $documentId = $resourceCollectionType . '_' . $resourceId;
 
         return new ResourceMeta($documentId, $resourceId, $resourceCollectionType, $resourceType, null, ['path' => parse_url($crawler->getUri(), PHP_URL_PATH)]);
     }

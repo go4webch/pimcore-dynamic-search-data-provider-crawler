@@ -157,6 +157,6 @@ class CrawlerDataProvider implements DataProviderInterface
         $this->configuration['path'] = $options['path'];
 
         $this->crawlerService->initSingleCrawl($resourceMeta, $contextDefinition->getName(), $contextDefinition->getContextDispatchType(), $this->configuration);
-        $this->crawlerService->process();
+        $this->crawlerService->process($options['path']);
     }
 }
