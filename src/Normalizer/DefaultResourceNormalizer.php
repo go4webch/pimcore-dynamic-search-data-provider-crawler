@@ -129,10 +129,10 @@ class DefaultResourceNormalizer extends AbstractResourceNormalizer
         }
 
         $resourceId = $value;
-        $resourceCollectionType = 'asset';
-        $resourceType = 'document';
-        $documentId = sprintf('asset_%d', $value);
+        $resourceCollectionType = 'document';
+        $resourceType = 'page';
+        $documentId = sprintf('document_pdf_%d', $value);
 
-        return new ResourceMeta($documentId, $resourceId, $resourceCollectionType, $resourceType, null);
+        return new ResourceMeta($documentId, $resourceId, $resourceCollectionType, $resourceType, null, ['path' => $resourceAttributes['uri']]);
     }
 }
